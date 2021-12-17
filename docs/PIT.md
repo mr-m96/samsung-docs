@@ -11,8 +11,9 @@ Also things vary from device to device.
 
 ## Header
 `0x12349876` is the magic number that is located in first 4 bytes of a PIT file. \
-Skip next 32-bit number, and then we have two 8 chars long strings: `COM_TAR2` and `SDM710`, for example. \
-First is unknown, but the second is probably processors ID/model.
+Skip next 4 bytes, and then we have two 8 chars long strings: `COM_TAR2` and `SDM710`, for example. \
+First is unknown, but the second is probably processor's ID/model, or the bootloader ID. \
+After that we have the version of some sort.
 
 ## Entries
 Entries begin after first 28 bytes. \
@@ -26,13 +27,15 @@ Value:
 ### Device Type
 Type: 32-bit number
 Value:
-* NAND = 0
-* File = 1
-* MMC = 2
-* All = 3
+* NAND = 0 (512 block size)
+* File = 1 (512 block size)
+* MMC = 2 (512 block size)
+* All = 3 (512 block size)
+* MMC = 8 (4096 block size)
 
 ### Identitifier
 Type: 32-bit number
+
 ### Attributes
 Type: 32-bit number
 Flags:
