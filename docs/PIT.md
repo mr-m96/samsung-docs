@@ -57,8 +57,8 @@ Type: 32-bit number
 ### File Size (obsolete)
 Type: 32-bit number
 ### Partition name
-Type: 32 bytes long string
+Type: 32 characters long string
 ### File name
-Type: 32 bytes long string
+Type: 32 characters long string
 ### FOTA name
-Type: 32 bytes long string
+Type: 32 characters long string
