@@ -70,6 +70,9 @@ Read: `0x64(Session) 0x00(Unknown)`
 ### Enable T-Flash
 Write: `0x64(Session) 0x05(T-Flash)` \
 Read: `0x64(Session) 0x00(Unknown)`
+### Change device's region code
+Write: `0x64(Session) 0x09(SalesCode) <3bytes>(RegionCode)` \
+Read: `0x64(Session) 0x00(Untested)`
 ## End Session (0x67)
 ### End Session
 Write: `0x67(End Session) 0x00(End)` \
