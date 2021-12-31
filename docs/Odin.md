@@ -39,8 +39,7 @@ Read: `LOKE`
 
 ## Rooting
 **Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
-Also, it's purpose is yet unknown, so be careful! \
-Should be done before handshake. \
+Command seem to only exist on somewhat old devices. Described as a "rooting check". \
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
 ## SECCMD
