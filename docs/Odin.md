@@ -22,10 +22,21 @@ It is an implementation of this protocol, tested on Samsung Galaxy A20s.
 * `Unknown` should be always 0x00. If it's not, you're in trouble.
 * All non-flash packets should be sent with buffer length 1024, else the packet will be rejected.
 
-## Handshake
-It is also known as protocol initialization. It can be done once for an USB connection. \
+## Handshakes
+Before any upload or download can take place, a handshake is done.
+
+### `ODIN`
+The standard handshake used by Odin is to send `ODIN`, on which the device send back `LOKE`.
 Write: `ODIN` \
 Read: `LOKE`
+
+### `THOR`
+`THOR` Seem to be a synonym for `ODIN` on some (newer?) devices, file transfers work just as when `ODIN` is sent. \
+There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. \
+Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
+Write: `THOR` \
+Read: `LOKE`
+
 ## Rooting
 **Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
 Also, it's purpose is yet unknown, so be careful! \
