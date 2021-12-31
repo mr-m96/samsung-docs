@@ -50,13 +50,18 @@ Should be done before handshake. \
 Write: `SECCMD` \
 Read: `<untested, dynamic length>` 
 ## DVIF
-Should be done before handshake. \
+Should be done before handshake. Command does not exist on older devices (like Galaxy S3). \
+Outputted information varies between device models. \
 Write: `DVIF` \
 Read: 
 ```
-@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<unknown, GX6BMB for me>;SALES=<region>;VER=<firmware version>;DID=<unknown>;RAND=(base64 encoded random string)@#
+@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;SALES=<region>;VER=<firmware version>;DID=<unknown>;RAND=(base64 encoded random string)@#
 ```
-Length is 183 bytes.
+or
+```
+@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;PROV=<unknown>;SALES=<region>;VER=<firmware version>;DID=<device/chip id>;@#
+```
+
 ## Session (0x64)
 ### Begin Session
 Write: `0x64(Session) 0x00(Begin) 0x03(Odin v3)` -or- `0x64(Session) 0x00(Begin) 0x04(Odin v4)` \
