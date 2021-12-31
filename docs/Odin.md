@@ -42,12 +42,31 @@ Read: `LOKE`
 Command seem to only exist on somewhat old devices. Described as a "rooting check". \
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
+
+## FPGM
+**Warning!** This command was found while looking at the `sboot.bin` and has not been tested. \
+For enabling/connecting to "Factory PGM".
+Write: `FPGM` \
+Read: ?
+
+## ATQ0
+Allow sending AT commands to modem? \
+Simply sending known [Samsung AT commands](https://atcommands.org/atdb/search?query=SM-G955F) after ATQ0 does not return anything though. \
+Write: `ATQ0` \
+Read: `OKAY`
+
+## AT
+Command is only valid on some (newer?) devices. Only works after `ATQ0` has been sent. \
+Write: `ATQ0` \
+Read: `OKAY`
+
 ## SECCMD
 **Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
 Also, it's purpose is yet unknown, so be careful! \
 Should be done before handshake. \
 Write: `SECCMD` \
-Read: `<untested, dynamic length>` 
+Read: `<untested, dynamic length>`
+
 ## DVIF
 Should be done before handshake. Command does not exist on older devices (like Galaxy S3). \
 Outputted information varies between device models. \
