@@ -13,7 +13,8 @@ Also things vary from device to device.
 `0x12349876` is the magic number that is located in first 4 bytes of a PIT file. \
 Skip next 4 bytes, and then we have two 8 chars long strings: `COM_TAR2` and `SDM710`, for example. \
 First is unknown, but the second is probably processor's ID/model, or the bootloader ID. \
-After that we have the version of some sort.
+After that we probably have the Odin protocol version that the PIT was created for. \
+Observed protocol versions (so far) are 0, 3, 4 and 5.
 
 ## Entries
 Entries begin after first 28 bytes. \
