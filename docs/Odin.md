@@ -68,7 +68,7 @@ Read: `0x64(Session) 0x00(Unknown)`
 Write: `0x64(Session) 0x02(Total Bytes) <64bit>(Bytes Length)` \
 Read: `0x64(Session) 0x00(Unknown)`
 ### Enable T-Flash
-Write: `0x64(Session) 0x05(T-Flash)` \
+Write: `0x64(Session) 0x08(T-Flash)` \
 Read: `0x64(Session) 0x00(Unknown)`
 ### Change device's region code
 Write: `0x64(Session) 0x09(SalesCode) <3bytes>(RegionCode)` \
