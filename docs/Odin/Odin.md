@@ -2,6 +2,7 @@
 layout: default
 title: Odin
 description: Odin Protocol v3/v4
+has_children: true
 nav_order: 3
 ---
 
