@@ -69,8 +69,8 @@ setenv POWER_MARGIN: Sets POWER_MARGIN
 saveenv: Saves environment data
 reset: Resets environment data
 ```
-Write: `SECCMD<command>` \
-Read: `<unknown>`
+Write: `PROMT<command>` \
+Read: `<response>`
 
 ### SECCMD **(IPoRE)**
 Commands:
