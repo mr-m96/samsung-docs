@@ -22,7 +22,7 @@ Shuts down the device. \
 Write: `RESET` \
 Read: `+RESET: OK\n`
 
-### PROMPT **(Unknown)**
+### PROMPT
 Allowed commands:
 ```
 getenv: Get environment data
@@ -37,7 +37,7 @@ reset: Resets environment data
 Write: `PROMT<command>` \
 Read: `<response>`
 
-### SECCMD **(Unknown)**
+### SECCMD
 Commands:
 ```
 0x01 - Forcefully set the warranty bit
