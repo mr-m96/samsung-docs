@@ -30,33 +30,34 @@ Before any upload or download can take place, a handshake is done.
 Write: `ODIN` \
 Read: `LOKE`
 
+### FPGM
+Does the same thing as the usual ODIN handshake. \
+Write: `FPGM` \
+Read: `OK`
+
 ### `THOR` **(IPoRE)**
 `THOR` Seem to be a synonym for `ODIN` on some (newer?) devices, file transfers work just as when `ODIN` is sent. \
 There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
 Write: `THOR` \
 Read: `LOKE`
 
-## Rooting **(IPoRE)**
+## Other commands
+### Rooting **(IPoRE)**
 Command seem to only exist on somewhat old devices. Described as a "rooting check". \
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
 
-## FPGM
-Does the same thing as the usual ODIN handshake. \
-Write: `FPGM` \
-Read: `OK`
-
-## ATQ0
+### #ATQ0
 Does nothing. \
 Write: `ATQ0` \
 Read: `OKAY`
 
-## SECCMD **(IPoRE)**
+### SECCMD **(IPoRE)**
 This seems to be a command promt. \
 Write: `SECCMD<command>` \
 Read: `<unknown>`
 
-## DVIF
+### DVIF
 Outputted information varies between device models. \
 Write: `DVIF` \
 Read: 
