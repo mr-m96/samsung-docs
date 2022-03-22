@@ -56,12 +56,6 @@ Read: `OKAY`
 Allowed commands:
 ```
 getenv: Get environment data
-!====== RESPONSE ======!
-REBOOT_MODE: %d
-DEBUG_LEVEL: %x
-FORCE_UPLOAD: %d
-CMDLINE: %s
-!====== RESPONSE ======!
 setenv REBOOT_MODE: Sets REBOOT_MODE
 setenv FORCE_UPLOAD: Sets FORCE_UPLOAD
 setenv DEBUG_LEVEL: Sets DEBUG_LEVEL
