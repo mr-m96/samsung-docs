@@ -19,7 +19,7 @@ Type: 32-bit integer
 Type: 8-char long string
 ### Project Name (???)
 Type: 8-char long string
-### Protocol Version (???)
+### Protocol Version or LUN count
 Type: 32-bit integer
 
 ## Entries
@@ -62,7 +62,7 @@ Flags:
 Type: 32-bit number
 ### Block count
 Type: 32-bit number
-### LUN (???)
+### LUN (used unly for UFS)
 Type: 32-bit number
 ### File Size
 Type: 32-bit number
