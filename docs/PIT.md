@@ -33,7 +33,7 @@ Value:
 * CP/Modem = 1
 
 ### Device Type
-Block Size: 512 (4096 for rpmb) \
+Block Size is always 512 \
 Type: 32-bit number \
 Value:
 * NAND = 1
