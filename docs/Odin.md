@@ -47,7 +47,7 @@ Command seem to only exist on somewhat old devices. Described as a "rooting chec
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
 
-### #ATQ0
+### ATQ0
 Does nothing. \
 Write: `ATQ0` \
 Read: `OKAY`
