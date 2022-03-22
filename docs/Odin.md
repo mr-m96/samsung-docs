@@ -53,7 +53,23 @@ Write: `ATQ0` \
 Read: `OKAY`
 
 ### PROMPT **(IPoRE)**
-This seems to be a command promt. \
+Allowed commands:
+```
+getenv: Get environment data
+!====== RESPONSE ======!
+REBOOT_MODE: %d
+DEBUG_LEVEL: %x
+FORCE_UPLOAD: %d
+CMDLINE: %s
+!====== RESPONSE ======!
+setenv REBOOT_MODE: Sets REBOOT_MODE
+setenv FORCE_UPLOAD: Sets FORCE_UPLOAD
+setenv DEBUG_LEVEL: Sets DEBUG_LEVEL
+setenv CMDLINE: Sets CMDLINE
+setenv POWER_MARGIN: Sets POWER_MARGIN
+saveenv: Saves environment data
+reset: Resets environment data
+```
 Write: `SECCMD<command>` \
 Read: `<unknown>`
 
