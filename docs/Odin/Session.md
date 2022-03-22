@@ -2,6 +2,7 @@
 layout: default
 title: Session
 description: Manage the Session
+parent: Odin
 nav_order: 5
 ---
 
