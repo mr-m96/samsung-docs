@@ -42,7 +42,7 @@ Write: `THOR` \
 Read: `LOKE`
 
 ## Other commands
-### Rooting **(IPoRE)**
+### Rooting
 Does nothing according to source code. \
 Write: `ROOTING` \
 Read: `DDI`
@@ -51,6 +51,11 @@ Read: `DDI`
 Does nothing according to source code. \
 Write: `ATQ0` \
 Read: `OKAY`
+
+### RESET
+Shuts down the device. \
+Write: `RESET` \
+Read: `+RESET: OK\n`
 
 ### PROMPT **(IPoRE)**
 Allowed commands:
@@ -81,11 +86,9 @@ Outputt differs between device models. \
 Write: `DVIF` \
 Read: 
 ```
-@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;SALES=<region>;VER=<firmware version>;DID=<unknown>;RAND=(base64 encoded random string)@#
-```
-or
-```
-@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;PROV=<unknown>;SALES=<region>;VER=<firmware version>;DID=<device/chip id>;@#
+General: @#MODEL=<Product Name>;VENDOR=<Chip Vendor>;FWVER=<Revision>;SALES=<Region Code>;VER=<Build Version>;DID=<DID>;RAND=<Base64 Encoded random string>;TMU_TEMP=<CPU Temperature>@#
+For UFS: @#UN=<UFS ID>;CAPA=<UFS Size>;PRODUCT=<UFS name>@#
+For MMC: @#UN=<MMC ID>;CAPA=<GB Size>PRODUCT=<MMC name>@#
 ```
 
 ## Session (0x64)
