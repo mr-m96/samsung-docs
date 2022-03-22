@@ -43,12 +43,12 @@ Read: `LOKE`
 
 ## Other commands
 ### Rooting **(IPoRE)**
-Command seem to only exist on somewhat old devices. Described as a "rooting check". \
+Does nothing according to source code. \
 Write: `ROOTING` \
-Read: `<untested, 88 bytes>`
+Read: `DDI`
 
 ### ATQ0
-Does nothing. \
+Does nothing according to source code. \
 Write: `ATQ0` \
 Read: `OKAY`
 
@@ -138,7 +138,12 @@ Read: `0x67(End Session) 0x00(Always)`
 ### Reboot
 Write: `0x67(End Session) 0x01(Reboot)` \
 Read: `0x67(End Session) 0x00(Always)`
+### Reboot into ODIN
+Would restart the device, and boot into ODIN again. \
+Write: `0x67(End Session) 0x02(Reboot into ODIN)` \
+Read: `0x67(End Session) 0x00(Always)`
 ### Shutdown
+This command is unsupported on some devices. \
 Write: `0x67(End Session) 0x03(Shutdown)` \
 Read: `0x67(End Session) 0x00(Always)`
 ## PIT (0x65)
