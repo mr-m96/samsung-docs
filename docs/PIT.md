@@ -15,7 +15,8 @@ Also things vary from device to device.
 It's value is always `0x12349876`.
 ### Count of OneNAND and MMC partitions
 Type: 32-bit integer
-### GANG name (???)
+### GANG name
+It's value is always `COM_TAR2`. \
 Type: 8-char long string
 ### Project Name (???)
 Type: 8-char long string
