@@ -17,6 +17,7 @@ It is an implementation of this protocol, tested on Samsung Galaxy A20s.
 ## Terminology
 * Sequence: Size is *Packet size for file transfer* multiplied by *File transfer max sequence size*
 * File Part: Size is *Packet size for file transfer*.
+* IPoRE = In the Process of Reverse-Engineering
 
 ## Other
 * `Unknown` should be always 0x00. If it's not, you're in trouble.
@@ -26,49 +27,36 @@ It is an implementation of this protocol, tested on Samsung Galaxy A20s.
 Before any upload or download can take place, a handshake is done.
 
 ### `ODIN`
-The standard handshake used by Odin is to send `ODIN`, on which the device send back `LOKE`.
 Write: `ODIN` \
 Read: `LOKE`
 
-### `THOR`
+### `THOR` **(IPoRE)**
 `THOR` Seem to be a synonym for `ODIN` on some (newer?) devices, file transfers work just as when `ODIN` is sent. \
-There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. \
-Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
+There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
 Write: `THOR` \
 Read: `LOKE`
 
-## Rooting
-**Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
+## Rooting **(IPoRE)**
 Command seem to only exist on somewhat old devices. Described as a "rooting check". \
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
 
-## FPGM
-**Warning!** This command was found while looking at the `sboot.bin` and has not been tested. \
-For enabling/connecting to "Factory PGM".
+## FPGM **(IPoRE)**
+For enabling/connecting to "Factory PGM". \
 Write: `FPGM` \
-Read: ?
+Read: `<unknown>`
 
 ## ATQ0
-Allow sending AT commands to modem? \
-Simply sending known [Samsung AT commands](https://atcommands.org/atdb/search?query=SM-G955F) after ATQ0 does not return anything though. \
+Does nothing. \
 Write: `ATQ0` \
 Read: `OKAY`
 
-## AT
-Command is only valid on some (newer?) devices. Only works after `ATQ0` has been sent. \
-Write: `ATQ0` \
-Read: `OKAY`
-
-## SECCMD
-**Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
-Also, it's purpose is yet unknown, so be careful! \
-Should be done before handshake. \
-Write: `SECCMD` \
-Read: `<untested, dynamic length>`
+## SECCMD **(IPoRE)**
+This seems to be a command promt. \
+Write: `SECCMD<command>` \
+Read: `<unknown>`
 
 ## DVIF
-Should be done before handshake. Command does not exist on older devices (like Galaxy S3). \
 Outputted information varies between device models. \
 Write: `DVIF` \
 Read: 
