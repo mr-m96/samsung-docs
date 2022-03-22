@@ -2,6 +2,7 @@
 layout: default
 title: Odin
 description: Odin Protocol v3/v4
+permalink: /docs/Odin
 has_children: true
 nav_order: 3
 ---
