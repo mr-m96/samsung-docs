@@ -16,13 +16,13 @@ nav_order: 1
 * File Part: Size is *Packet size for file transfer*.
 
 ## How-to guide
-1) Request a file flash
-2) Divide the file into sequences
-3) Begin file sequence flash
-4) Divide the sequence into file parts
-5) Send the file part (in raw format)
-6) Read the file part response
-7) Send End file sequence flash:
+1) Request a file flash \
+2) Divide the file into sequences \
+3) Begin file sequence flash \
+4) Divide the sequence into file parts \
+5) Send the file part (in raw format) \
+6) Read the file part response \
+7) Send End file sequence flash: \
     * If you finished sending file parts
     * Send the AP/CP packet accordingly
 8) Repeat until the end of the file
