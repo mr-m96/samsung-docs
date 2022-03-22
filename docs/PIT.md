@@ -27,13 +27,14 @@ Type: 32-bit integer
 Entries begin after first 28 bytes. \
 One entry is 132 bytes long.
 ### Binary Type
-Type: 32-bit number
+Type: 32-bit number \
 Value: 
 * AP/Phone = 0
 * CP/Modem = 1
 
 ### Device Type
-Type: 32-bit number
+Block Size: 512 (4096 for rpmb) \
+Type: 32-bit number \
 Value:
 * NAND = 1
 * EMMC = 2
@@ -48,13 +49,13 @@ Value:
 Type: 32-bit number
 
 ### Attributes
-Type: 32-bit number
+Type: 32-bit number \
 Flags:
 * STL = 0x0001
 * Write = 0x0010
 
 ### Update Attributes
-Type: 32-bit number
+Type: 32-bit number \
 Flags:
 * FOTA = 0x0001
 * Secure = 0x0010
