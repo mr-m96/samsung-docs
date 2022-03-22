@@ -13,7 +13,7 @@ Also things vary from device to device.
 `0x12349876` is the magic number that is located in first 4 bytes of a PIT file. \
 ### Magic Number
 It's value is always `0x12349876`.
-### Count of OneNAND and MMC partitions
+### Count of partitions
 Type: 32-bit integer
 ### GANG name
 It's value is always `COM_TAR2`. \
