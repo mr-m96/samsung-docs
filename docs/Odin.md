@@ -17,7 +17,6 @@ It is an implementation of this protocol, tested on Samsung Galaxy A20s.
 ## Terminology
 * Sequence: Size is *Packet size for file transfer* multiplied by *File transfer max sequence size*
 * File Part: Size is *Packet size for file transfer*.
-* IPoRE = In the Process of Reverse-Engineering
 
 ## Other
 * `Unknown` should be always 0x00. If it's not, you're in trouble.
@@ -35,7 +34,7 @@ Does the same thing as the usual ODIN handshake. \
 Write: `FPGM` \
 Read: `OK`
 
-### THOR **(IPoRE)**
+### THOR **(Unknown)**
 `THOR` Seem to be a synonym for `ODIN` on some (newer?) devices, file transfers work just as when `ODIN` is sent. \
 There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
 Write: `THOR` \
@@ -57,7 +56,7 @@ Shuts down the device. \
 Write: `RESET` \
 Read: `+RESET: OK\n`
 
-### PROMPT **(IPoRE)**
+### PROMPT **(Unknown)**
 Allowed commands:
 ```
 getenv: Get environment data
@@ -72,7 +71,7 @@ reset: Resets environment data
 Write: `PROMT<command>` \
 Read: `<response>`
 
-### SECCMD **(IPoRE)**
+### SECCMD **(Unknown)**
 Commands:
 ```
 0x01 - Forcefully set the warranty bit
@@ -121,9 +120,9 @@ Read: `0x64(Session) 0x00(Status Code)`
 ### Set Total Bytes
 Write: `0x64(Session) 0x02(Total Bytes) <64bit>(Bytes Length)` \
 Read: `0x64(Session) 0x00(Always)`
-### OEM State **(IPoRE)**
+### OEM State **(Unknown)**
 Write: `0x64(Session) 0x03(OEM State)`
-### No OEM check **(IPoRE)**
+### No OEM check **(Unknown)**
 Write: `0x64(Session) 0x04(No OEM Check)`
 ### Enable T-Flash
 Write: `0x64(Session) 0x08(T-Flash)` \
