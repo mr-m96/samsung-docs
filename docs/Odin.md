@@ -57,6 +57,7 @@ If Unknown is not 0:
 * File transfer max sequence size: 30 (Packets)
 * Send `0x64(Session) 0x05(FilePartSize) 0x100000(Packet Size)`
 * Read `0x64(Session) 0x00(Unknown)`
+
 ### Device Type
 Write: `0x64(Session) 0x01(Device Type)` \
 Read: `0x64(Session) <32bit>(Device Type)`
