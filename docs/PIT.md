@@ -11,10 +11,16 @@ Also things vary from device to device.
 
 ## Header
 `0x12349876` is the magic number that is located in first 4 bytes of a PIT file. \
-Skip next 4 bytes, and then we have two 8 chars long strings: `COM_TAR2` and `SDM710`, for example. \
-First is unknown, but the second is probably processor's ID/model, or the bootloader ID. \
-After that we probably have the Odin protocol version that the PIT was created for. \
-Observed protocol versions (so far) are 0, 3, 4 and 5.
+### Magic Number
+It's value is always `0x12349876`.
+### Count of OneNAND and MMC partitions
+Type: 32-bit integer
+### GANG name (???)
+Type: 8-char long string
+### Project Name (???)
+Type: 8-char long string
+### Protocol Version (???)
+Type: 32-bit integer
 
 ## Entries
 Entries begin after first 28 bytes. \
@@ -28,11 +34,14 @@ Value:
 ### Device Type
 Type: 32-bit number
 Value:
-* NAND = 0 (512 block size)
-* File = 1 (512 block size)
-* MMC = 2 (512 block size)
-* All = 3 (512 block size)
-* MMC = 8 (4096 block size)
+* NAND = 1
+* EMMC = 2
+* SPI = 3
+* IDE = 4
+* NANDX16 = 5
+* NOR = 6
+* NANDWB1 = 7
+* UFS = 8
 
 ### Identitifier
 Type: 32-bit number
@@ -49,13 +58,13 @@ Flags:
 * FOTA = 0x0001
 * Secure = 0x0010
 
-### Block size/offset
+### Start Block
 Type: 32-bit number
 ### Block count
 Type: 32-bit number
-### File Offset (obsolete)
+### LUN (???)
 Type: 32-bit number
-### File Size (obsolete)
+### File Size
 Type: 32-bit number
 ### Partition name
 Type: 32 characters long string
