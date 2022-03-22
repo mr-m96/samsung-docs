@@ -84,7 +84,7 @@ If Unknown is not 0:
 Write: `0x64(Session) 0x01(Device Type)` \
 Read: `0x64(Session) <32bit>(Device Type)`
 ### Erase userdata
-**WARNING!** This is do a factory reset. \
+**WARNING!** This will do a factory reset. \
 Write: `0x64(Session) 0x07(Erase)` \
 Read: `0x64(Session) 0x00(Unknown)`
 ### Total Bytes
