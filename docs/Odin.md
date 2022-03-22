@@ -52,10 +52,19 @@ Does nothing. \
 Write: `ATQ0` \
 Read: `OKAY`
 
-### SECCMD **(IPoRE)**
+### PROMPT **(IPoRE)**
 This seems to be a command promt. \
 Write: `SECCMD<command>` \
 Read: `<unknown>`
+
+### SECCMD **(IPoRE)**
+Commands:
+```
+0x01 - Forcefully set the warranty bit
+0x02 - Clear EMC token
+```
+Write: `SECCMD<command>` \
+Read: `<response>`
 
 ### DVIF
 Outputted information varies between device models. \
