@@ -41,10 +41,10 @@ Command seem to only exist on somewhat old devices. Described as a "rooting chec
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
 
-## FPGM **(IPoRE)**
-For enabling/connecting to "Factory PGM". \
+## FPGM
+Does the same thing as the usual ODIN handshake. \
 Write: `FPGM` \
-Read: `<unknown>`
+Read: `OK`
 
 ## ATQ0
 Does nothing. \
