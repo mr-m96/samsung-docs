@@ -153,20 +153,20 @@ Read: `0x67(End Session) 0x00(Always)`
 ### Flashing
 #### Request PIT flash
 Write: `0x65(PIT) 0x00(Flash)` \
-Read: `0x65(PIT) <32bit>(Untested)`
+Read: `0x65(PIT) 0x00(Always)`
 #### Begin PIT Flash
 Write: `0x65(PIT) 0x02(Begin) <32bit>(Byte Length)` \
-Read: `0x65(PIT) <32bit>(Untested)`
+Read: `0x65(PIT) 0x00(Always)`
 #### Send PIT data
 Write: `<PIT data buffer>` \
-Read: `0x65(PIT) <32bit>(Untested)`
+Read: `0x65(PIT) 0x00(Always)`
 #### End PIT Flash
 Write: `0x65(PIT) 0x03(End)` \
-Read: `0x65(PIT) <32bit>(Untested)`
+Read: `0x65(PIT) 0x00(Always)`
 ### Dumping
 #### Request PIT data dump
 Write: `0x65(PIT) 0x01(Dump)` \
-Read: `0x65(PIT) <32bit>(File Size)`
+Read: `0x65(PIT) 0x4000(File Size)`
 #### Dump PIT data block
 One block is 500 bytes. \
 Send an empty packet after last block. \
@@ -175,14 +175,14 @@ Read: `<PIT data block>`
 #### End PIT dump
 Identical to End PIT flash. \
 Write: `0x65(PIT) 0x03(End)` \
-Read: `0x65(PIT) <32bit>(Untested)`
+Read: `0x65(PIT) 0x00(Always)`
 ## File (0x66)
 ### Request file flash
 Write: `0x66(File) 0x00(Flash)` \
-Read: `0x66(File) <32bit>(Untested)`
+Read: `0x66(File) 0x00(Always)`
 ### Begin file sequence flash
 Write: `0x66(File) 0x02(FilePart) <32bit>(Byte Length)` \
-Read: `0x66(File) <32bit>(Untested)`
+Read: `0x66(File) 0x00(On Success)`
 ### Flash a file part
 Send an empty packet for the first file part. \
 Write: `<File part data>` \
@@ -190,8 +190,8 @@ Read: `0x00(File Part) <32bit>(File Part Index)`
 ### End file sequence flash: MODEM
 Send an empty packet before and after. \
 Write: `0x66(File) 0x03(End) 0x01(Modem/CP) <32bit>(Sequence Byte Length) 0x00(Unknown) <32bit>(Device Type) <32bit>(Is last Sequence)` \
-Read: `0x66(File) <32bit>(Untested)`
+Read: `0x66(File) 0x00(On Success)`
 ### End file sequence flash: PHONE
 Send an empty packet before and after. \
 Write: `0x66(File) 0x03(End) 0x00(Phone/AP) <32bit>(Sequence Byte Length) 0x00(Unknown) <32bit>(Device Type) <32bit>(Identifier) <32bit>(Is last Sequence)` \
-Read: `0x66(File) <32bit>(Untested)`
+Read: `0x66(File) 0x00(On Success)`
