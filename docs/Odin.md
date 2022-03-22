@@ -22,30 +22,64 @@ It is an implementation of this protocol, tested on Samsung Galaxy A20s.
 * `Unknown` should be always 0x00. If it's not, you're in trouble.
 * All non-flash packets should be sent with buffer length 1024, else the packet will be rejected.
 
-## Handshake
-It is also known as protocol initialization. It can be done once for an USB connection. \
+## Handshakes
+Before any upload or download can take place, a handshake is done.
+
+### `ODIN`
+The standard handshake used by Odin is to send `ODIN`, on which the device send back `LOKE`.
 Write: `ODIN` \
 Read: `LOKE`
+
+### `THOR`
+`THOR` Seem to be a synonym for `ODIN` on some (newer?) devices, file transfers work just as when `ODIN` is sent. \
+There also exists a [thor download protocol](https://lists.denx.de/pipermail/u-boot/2013-October/164088.html) that Tizen/Samsung uses in their development boards so `THOR` could possibly have something to do with this mode. \
+Simply doing a `THOR` handshake and trying to flash something with [lthor](https://git.tizen.org/cgit/tools/lthor/) does not work though. \
+Write: `THOR` \
+Read: `LOKE`
+
 ## Rooting
 **Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
-Also, it's purpose is yet unknown, so be careful! \
-Should be done before handshake. \
+Command seem to only exist on somewhat old devices. Described as a "rooting check". \
 Write: `ROOTING` \
 Read: `<untested, 88 bytes>`
+
+## FPGM
+**Warning!** This command was found while looking at the `sboot.bin` and has not been tested. \
+For enabling/connecting to "Factory PGM".
+Write: `FPGM` \
+Read: ?
+
+## ATQ0
+Allow sending AT commands to modem? \
+Simply sending known [Samsung AT commands](https://atcommands.org/atdb/search?query=SM-G955F) after ATQ0 does not return anything though. \
+Write: `ATQ0` \
+Read: `OKAY`
+
+## AT
+Command is only valid on some (newer?) devices. Only works after `ATQ0` has been sent. \
+Write: `ATQ0` \
+Read: `OKAY`
+
 ## SECCMD
 **Warning!** This command was found while looking at the `aboot.mbn` and was not tested yet! \
 Also, it's purpose is yet unknown, so be careful! \
 Should be done before handshake. \
 Write: `SECCMD` \
-Read: `<untested, dynamic length>` 
+Read: `<untested, dynamic length>`
+
 ## DVIF
-Should be done before handshake. \
+Should be done before handshake. Command does not exist on older devices (like Galaxy S3). \
+Outputted information varies between device models. \
 Write: `DVIF` \
 Read: 
 ```
-@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<unknown, GX6BMB for me>;SALES=<region>;VER=<firmware version>;DID=<unknown>;RAND=(base64 encoded random string)@#
+@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;SALES=<region>;VER=<firmware version>;DID=<unknown>;RAND=(base64 encoded random string)@#
 ```
-Length is 183 bytes.
+or
+```
+@#MODEL=<model>;UN=<unknown>;CAPA=<unknown>;VENDOR=SAMSUNG;FWVER=<probably efuse>;PRODUCT=<flash storage name>;PROV=<unknown>;SALES=<region>;VER=<firmware version>;DID=<device/chip id>;@#
+```
+
 ## Session (0x64)
 ### Begin Session
 Write: `0x64(Session) 0x00(Begin) <protocol version>(0x00, 0x03, 0x04 or 0x05)`
