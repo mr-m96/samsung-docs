@@ -3,7 +3,7 @@ layout: default
 title: Handshake
 description: Odin Handshake
 parent: Odin
-nav_order: 2
+nav_order: 3
 ---
 
 ## Handshakes

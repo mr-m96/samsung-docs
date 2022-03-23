@@ -3,7 +3,7 @@ layout: default
 title: Flashing
 description: Flash partitions with Odin
 parent: Odin
-nav_order: 3
+nav_order: 4
 ---
 
 ## Defaults

@@ -3,7 +3,7 @@ layout: default
 title: PIT
 description: PIT flashing and dumping 
 parent: Odin
-nav_order: 5
+nav_order: 6
 ---
 
 ## How-to guide
