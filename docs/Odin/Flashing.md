@@ -23,8 +23,8 @@ nav_order: 3
 5) Send the file part (in raw format) \
 6) Read the file part response \
 7) Send End file sequence flash: \
-      * If you finished sending file parts
-      * Send the AP/CP packet accordingly
+* If you finished sending file parts \
+* Send the AP/CP packet accordingly \
 8) Repeat until the end of the file
 
 ## Documentation
