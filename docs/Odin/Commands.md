@@ -6,38 +6,111 @@ parent: Odin
 nav_order: 2
 ---
 
-## Other commands
-### Rooting
+## Rooting
 Does nothing according to source code. \
 Write: `ROOTING` \
 Read: `DDI`
 
-### ATQ0
+## ATQ0
 Does nothing according to source code. \
 Write: `ATQ0` \
 Read: `OKAY`
 
-### RESET
+## RESET
 Shuts down the device. \
 Write: `RESET` \
 Read: `+RESET: OK\n`
 
-### PROMPT
-Allowed commands:
-```
-getenv: Get environment data
-setenv REBOOT_MODE: Sets REBOOT_MODE
-setenv FORCE_UPLOAD: Sets FORCE_UPLOAD
-setenv DEBUG_LEVEL: Sets DEBUG_LEVEL
-setenv CMDLINE: Sets CMDLINE
-setenv POWER_MARGIN: Sets POWER_MARGIN
-saveenv: Saves environment data
-reset: Resets environment data
-```
-Write: `PROMT<command>` \
+## PROMPT
+Write: `PROMPT<command>` \
 Read: `<response>`
 
-### SECCMD
+### Commands
+#### Get environment data
+This is not an actual, but "virtual" command that is only usable by using the PROMT.
+Would return all environment variables, stated below. \
+Command format: `getenv`. No arguments required. \
+Response format: `[Name]: [Value]\n` for each.
+#### Set reboot mode
+Command format: `setenv REBOOT_MODE [value]` \
+Response format: `Should be empty`
+##### Reboot values
+**WARNING!** Modem Secure Error seems to be impossible to stop. \
+It would render your device unusable because of a security error.
+
+| Name                          | Value | Information               |
+|:------------------------------|:------|:--------------------------|
+| REBOOT_MODE_NONE              | 0x00  | Model's Name              |
+| REBOOT_MODE_DOWNLOAD          | 0x01  | Serial Code               |
+| REBOOT_MODE_UPLOAD            | 0x02  | Used, purpose unknown     |
+| REBOOT_MODE_CHARGING          | 0x03  | Unused?                   |
+| REBOOT_MODE_FOTA              | 0x04  | FOTA Updating Process     |
+| REBOOT_MODE_FOTA_BL           | 0x05  | BOTA Update               |
+| REBOOT_MODE_SECURE            | 0x06  | Modem Secure Error        |
+| REBOOT_MODE_NORMAL            | 0x07  | Default Reboot Mode       |
+| REBOOT_MODE_FWUP              | 0x08  | Emergency Firmware Update |
+| REBOOT_MODE_EM_FUSE           | 0x09  | Unused?                   |
+| REBOOT_MODE_FACTORY_MD        | 0xXA  | Unused?                   |
+| REBOOT_MODE_FOTA_UP           | 0x0B  | FOTA Setting Up           |
+| REBOOT_MODE_BOOTLOADER        | 0xXC  | Download (Odin) Mode      |
+| REBOOT_MODE_WIRELESSD_BL      | 0xXD  | Unused?                   |
+| REBOOT_MODE_RECOVERY_WD       | 0x0E  | Skip AVB Main             |
+| REBOOT_MODE_FACTORY           | 0x0F  | Samsung Factory Mode      |
+| REBOOT_MODE_POWEROFF_WATCH    | 0xFD  | Unused?                   |
+| REBOOT_MODE_WATCH_REBOOT_MODE | 0x10  | Unused?                   |
+| REBOOT_MODE_CHARGING          | 0x11  | Unused?                   |
+| REBOOT_MODE_POWEROFF_BYKEY    | 0x12  | Unused?                   |
+
+#### Enable/disable upload
+Command format: `setenv FORCE_UPLOAD [value]` \
+I couldn't find anything that would "upload". \
+Response format: `Untested`
+
+##### Values
+
+| Name                            | Value |
+|:--------------------------------|:------|
+| KERNEL_SEC_FORCE_UPLOAD_DISABLE | 0x00  |
+| KERNEL_SEC_FORCE_UPLOAD_ENABLE  | 0x05  |
+
+#### Set debug level
+Command format: `setenv DEBUG_LEVEL [value]` \
+Response format: `Untested`
+
+##### Debug Levels
+
+| Name                        | Value  |
+|:----------------------------|:-------|
+| KERNEL_SEC_DEBUG_LEVEL_LOW  | 0x4F4C |
+| KERNEL_SEC_DEBUG_LEVEL_MID  | 0x494D |
+| KERNEL_SEC_DEBUG_LEVEL_HIGH | 0x4948 |
+| KERNEL_SEC_DEBUG_LEVEL_AUTO | 0x5541 |
+
+#### Set default cmdline
+Command format: `setenv CMDLINE [value]` \
+Tabs and quotes are not allowed. \
+Response format: `Untested`
+
+##### Values observed
+| Name            | Value                                                                |
+|:----------------|:---------------------------------------------------------------------|
+| Default Value   | `console=ram loglevel=7`                                             |
+| Non-Exynos UART | `console=ttySAC0,115200n8 loglevel=7`                                |
+| Exynos UART     | `earlycon=exynos4210,0x10540000 console=ttySAC0,115200n8 loglevel=7` |
+
+#### Set power margin
+Command format: `setenv POWER_MARGIN [value]` \
+Values are unknown (not found in bootloader)
+
+#### Save environment data
+Response format: `Untested` \
+Command format: `saveenv`
+
+#### Restart the device
+Response format: `Untested` \
+Command format: `reset`
+
+## SECCMD
 Commands:
 ```
 0x01 - Forcefully set the warranty bit
@@ -46,7 +119,7 @@ Commands:
 Write: `SECCMD<command>` \
 Read: `<response>`
 
-### DVIF
+## DVIF
 Write: `DVIF` \
 Read: 
 ```
