@@ -31,12 +31,13 @@ One entry is 132 bytes long.
 | 32-bit integer    | Partition Identifier                      |
 | 32-bit integer    | Attributes (flags)                        |
 | 32-bit integer    | Update attibutes (flags)                  |
-| 32-bit integer    | Start block                               |
-| 32-bit integer    | Count of blocks (one block is 512 bytes)  |
+| 32-bit integer    | Block size (usually 512 bytes)            |
+| 32-bit integer    | Count of blocks                           |
+| 32-bit integer    | File Offset (also seems to be obsolete)   |
 | 32-bit integer    | File Size (is obsolete, nowadays is zero) |
 | String, 8 bytes   | Partition Name                            |
 | String, 8 bytes   | File Name                                 |
-| String, 8 bytes   | FOTA Name (only for 'remainder')          |
+| String, 8 bytes   | Delta Name (only for 'remainder')         |
 
 ### Binary Types
 * AP/Phone = 0
@@ -53,9 +54,12 @@ One entry is 132 bytes long.
 * UFS = 8
 
 ### Attributes
-* STL = 0x0001
-* Write = 0x0010
+* Read-Only = 0
+* Read-Write = 1
+* STL = 3
 
 ### Update Attributes
-* FOTA = 0x0001
-* Secure = 0x0010
+* None = 0
+* FOTA = 1
+* Secure = 2
+* FOTA Secure = 3
