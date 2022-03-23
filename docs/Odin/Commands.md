@@ -8,11 +8,13 @@ nav_order: 2
 
 ## Rooting
 Does nothing according to source code. \
+P.S. Bootloader is unfinished! \
 Write: `ROOTING` \
 Read: `DDI`
 
 ## ATQ0
 Does nothing according to source code. \
+P.S. Bootloader is unfinished! \
 Write: `ATQ0` \
 Read: `OKAY`
 
