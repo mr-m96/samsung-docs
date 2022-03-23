@@ -92,7 +92,7 @@ Request:
 | 0x66         | Byte              | Packet type                 |
 | 0x03         | Byte              | Packet's command            |
 | 0x00         | Byte              | Phone/AP                    |
-| dynamic>     | 32-bit integer    | Sequence byte length        |
+| dynamic      | 32-bit integer    | Sequence byte length        |
 | 0x00         | Byte              | TODO: Sync with source code |
 | dynamic      | 32-bit integer    | Device Type (PIT)           |
 | dynamic      | 32-bit integer    | Partition Identifier (PIT)  |
