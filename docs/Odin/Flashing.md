@@ -47,7 +47,7 @@ Request:
 |:-------------|:------------------|:-------------------|
 | 0x66         | Byte              | Packet type        |
 | 0x02         | Byte              | Packet's command   |
-| <dynamic>    | 32-bit integer    | Length (in bytes)  |
+| dynamic      | 32-bit integer    | Length (in bytes)  |
 
 Response:
 | Value        | Argument Type     | Information                                 |
@@ -59,13 +59,13 @@ Send an empty packet for the first file part. \
 Request:
 | Value        | Argument Type     | Information        |
 |:-------------|:------------------|:-------------------|
-| <dynamic>    | Raw byte buffer   | File Part buffer   |
+| dynamic      | Raw byte buffer   | File Part buffer   |
 
 Response:
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | Byte              | Packet type, would be 0xFF on failure       |
-| <dynamic>    | 32-bit integer    | Current file part index on LOKE's side      |
+| dynamic      | 32-bit integer    | Current file part index on LOKE's side      |
 ### End file sequence flash: MODEM
 Send an empty packet before and after. \
 Request:
@@ -74,10 +74,10 @@ Request:
 | 0x66         | Byte              | Packet type                 |
 | 0x03         | Byte              | Packet's command            |
 | 0x01         | Byte              | Modem/CP                    |
-| <dynamic>    | 32-bit integer    | Sequence byte length        |
+| dynamic      | 32-bit integer    | Sequence byte length        |
 | 0x00         | Byte              | TODO: Sync with source code |
-| <dynamic>    | 32-bit integer    | Device Type (PIT)           |
-| <dynamic>    | 32-bit integer    | Is last sequence, 0/1 bool  |
+| dynamic      | 32-bit integer    | Device Type (PIT)           |
+| dynamic      | 32-bit integer    | Is last sequence, 0/1 bool  |
 
 Response:
 | Value        | Argument Type     | Information                                 |
@@ -86,17 +86,17 @@ Response:
 | 0x00         | Byte              | Status code. May not be zero.               |
 ### End file sequence flash: PHONE
 Send an empty packet before and after. \
-  Request:
+Request:
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x66         | Byte              | Packet type                 |
 | 0x03         | Byte              | Packet's command            |
 | 0x00         | Byte              | Phone/AP                    |
-| <dynamic>    | 32-bit integer    | Sequence byte length        |
+| dynamic>     | 32-bit integer    | Sequence byte length        |
 | 0x00         | Byte              | TODO: Sync with source code |
-| <dynamic>    | 32-bit integer    | Device Type (PIT)           |
-| <dynamic>    | 32-bit integer    | Partition Identifier (PIT)  |
-| <dynamic>    | 32-bit integer    | Is last sequence, 0/1 bool  |
+| dynamic      | 32-bit integer    | Device Type (PIT)           |
+| dynamic      | 32-bit integer    | Partition Identifier (PIT)  |
+| dynamic      | 32-bit integer    | Is last sequence, 0/1 bool  |
 
 Response:
 | Value        | Argument Type     | Information                                 |
