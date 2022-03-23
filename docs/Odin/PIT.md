@@ -24,18 +24,21 @@ nav_order: 5
 ### Flashing
 #### Request PIT flash
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
 | 0x00         | 32-bit integer    | Packet's command            |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 #### Begin PIT flash
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
@@ -43,29 +46,34 @@ Request:
 | dynamic      | 32-bit integer    | PIT size, in bytes          |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 #### Send PIT data
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | dynamic      | Raw byte buffer   | PIT file data buffer        |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 #### End PIT Flash
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
 | 0x03         | 32-bit integer    | Packet's command            |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
@@ -73,12 +81,14 @@ Response:
 ### Dumping
 #### Request PIT data dump
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
 | 0x01         | 32-bit integer    | Packet's command            |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
@@ -86,6 +96,7 @@ Response:
 #### Dump PIT data block
 One block is 500 bytes. Send an empty packet after last block. \
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
@@ -93,18 +104,21 @@ Request:
 | dynamic      | 32-bit integer    | Current block index         |
 
 Response:
+
 | Value        | Argument Type     | Information                       |
 |:-------------|:------------------|:----------------------------------|
 | dynamic      | Raw byte buffer   | The requested block's data buffer |
 #### End PIT dump
 Identical to End PIT flash. \
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x65         | 32-bit integer    | Packet type                 |
 | 0x03         | 32-bit integer    | Packet's command            |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
