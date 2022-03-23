@@ -3,7 +3,7 @@ layout: default
 title: Commands
 description: Pre-handshake commands
 parent: Odin
-nav_order: 3
+nav_order: 1
 ---
 
 ## Other commands
