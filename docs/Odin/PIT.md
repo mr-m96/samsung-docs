@@ -11,7 +11,7 @@ nav_order: 5
 1) Send Request PIT flash \
 2) Send Begin PIT flash \
 3) Send the entire PIT in one go \
-4) Send End PIT flash \
+4) Send End PIT flash
 ### Dump
 1) Send Begin PIT dump \
 2) Split the filesize into blocks \
