@@ -37,7 +37,7 @@ One entry is 132 bytes long.
 | 32-bit integer    | File Size (is obsolete, nowadays is zero) |
 | String, 8 bytes   | Partition Name                            |
 | String, 8 bytes   | File Name                                 |
-| String, 8 bytes   | Delta Name (only for 'remainder')         |
+| String, 8 bytes   | FOTA Name (only for 'remainder')          |
 
 ### Binary Types
 * AP/Phone = 0
