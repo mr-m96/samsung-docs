@@ -31,18 +31,21 @@ nav_order: 3
 ## Documentation
 ### Request file flash
 Request:
+
 | Value        | Argument Type     | Information        |
 |:-------------|:------------------|:-------------------|
 | 0x66         | 32-bit integer    | Packet type        |
 | 0x00         | 32-bit integer    | Packet's command   |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 ### Begin file sequence flash
 Request:
+
 | Value        | Argument Type     | Information        |
 |:-------------|:------------------|:-------------------|
 | 0x66         | 32-bit integer    | Packet type        |
@@ -50,6 +53,7 @@ Request:
 | dynamic      | 32-bit integer    | Length (in bytes)  |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
@@ -57,11 +61,13 @@ Response:
 ### Flash a file part
 Send an empty packet for the first file part. \
 Request:
+
 | Value        | Argument Type     | Information        |
 |:-------------|:------------------|:-------------------|
 | dynamic      | Raw byte buffer   | File Part buffer   |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
@@ -69,6 +75,7 @@ Response:
 ### End file sequence flash: MODEM
 Send an empty packet before and after. \
 Request:
+
 | Value        | Argument Type     | Information                 |
 |:-------------|:------------------|:----------------------------|
 | 0x66         | 32-bit integer    | Packet type                 |
@@ -80,6 +87,7 @@ Request:
 | dynamic      | 32-bit integer    | Is last sequence, 0/1 bool  |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
@@ -87,6 +95,7 @@ Response:
 ### End file sequence flash: PHONE
 Send an empty packet before and after. \
 Request:
+
 | Value        | Argument Type             | Information                 |
 |:-------------|:--------------------------|:----------------------------|
 | 0x66         | 32-bit integer            | Packet type                 |
@@ -99,6 +108,7 @@ Request:
 | dynamic      | 32-bit integer Boolean    | Is last sequence            |
 
 Response:
+
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
