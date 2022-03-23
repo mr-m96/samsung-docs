@@ -3,7 +3,7 @@ layout: default
 title: Session
 description: Manage the Session
 parent: Odin
-nav_order: 5
+nav_order: 4
 ---
 
 ## Packets
