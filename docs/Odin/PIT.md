@@ -23,27 +23,89 @@ nav_order: 5
 ## Packets
 ### Flashing
 #### Request PIT flash
-Write: `0x65(PIT) 0x00(Flash)` \
-Read: `0x65(PIT) 0x00(Always)`
-#### Begin PIT Fflash
-Write: `0x65(PIT) 0x02(Begin) <32bit>(Byte Length)` \
-Read: `0x65(PIT) 0x00(Always)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x00         | 32-bit integer    | Packet's command            |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+#### Begin PIT flash
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x02         | 32-bit integer    | Packet's command            |
+| dynamic      | 32-bit integer    | PIT size, in bytes          |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
 #### Send PIT data
-Write: `<PIT data buffer>` \
-Read: `0x65(PIT) 0x00(Always)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| dynamic      | Raw byte buffer   | PIT file data buffer        |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
 #### End PIT Flash
-Write: `0x65(PIT) 0x03(End)` \
-Read: `0x65(PIT) 0x00(Always)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x03         | 32-bit integer    | Packet's command            |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
 ### Dumping
 #### Request PIT data dump
-Write: `0x65(PIT) 0x01(Dump)` \
-Read: `0x65(PIT) 0x4000(File Size)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x01         | 32-bit integer    | Packet's command            |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| dynamic      | 32-bit integer    | PIT file size. Ususally it is 0x4000        |
 #### Dump PIT data block
-One block is 500 bytes. \
-Send an empty packet after last block. \
-Write: `0x65(PIT) 0x02(FilePart) <32bit>(Block)` \
-Read: `<PIT data block>`
+One block is 500 bytes. Send an empty packet after last block. \
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x02         | 32-bit integer    | Packet's command            |
+| dynamic      | 32-bit integer    | Current block index         |
+
+Response:
+| Value        | Argument Type     | Information                       |
+|:-------------|:------------------|:----------------------------------|
+| dynamic      | Raw byte buffer   | The requested block's data buffer |
 #### End PIT dump
 Identical to End PIT flash. \
-Write: `0x65(PIT) 0x03(End)` \
-Read: `0x65(PIT) 0x00(Always)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x65         | 32-bit integer    | Packet type                 |
+| 0x03         | 32-bit integer    | Packet's command            |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero                 |
