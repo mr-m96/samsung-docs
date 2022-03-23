@@ -23,7 +23,7 @@ Response:
 | 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | dynamic      | 32-bit integer    | The protocol version, modified              |
 
-The Response Ack would be:
+The modified version would be:
 * If the `<Protocol Version>` is 0, would return `0x20000`
 * If the `<Protocol Version>` is lower than bootloader's,
     * it would return `(<Protocol Version> << 16) | 0x0`
@@ -32,7 +32,7 @@ The Response Ack would be:
 
 (In a nutshell, `0x04` would be `0x40000`)
 
-If Response Ack is not 0 (in most cases):
+If modified version is not 0 (in most cases):
 * Read/Write timeout for file transfer: 120000 (2 minutes)
 * Packet size for file transfer: 1048576 (1 MiB)
 * File transfer max sequence size: 30 (Packets)
