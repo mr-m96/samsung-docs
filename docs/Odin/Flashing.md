@@ -43,6 +43,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Begin file sequence flash
 Request:
 
@@ -58,6 +59,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. May not be zero.               |
+
 ### Flash a file part
 Send an empty packet for the first file part. \
 Request:
@@ -72,6 +74,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | dynamic      | 32-bit integer    | Current file part index on LOKE's side      |
+
 ### End file sequence flash: MODEM
 Send an empty packet before and after. \
 Request:
@@ -92,6 +95,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x66         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. May not be zero.               |
+
 ### End file sequence flash: PHONE
 Send an empty packet before and after. \
 Request:
