@@ -36,6 +36,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 #### Begin PIT flash
 Request:
 
@@ -51,6 +52,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 #### Send PIT data
 Request:
 
@@ -64,6 +66,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 #### End PIT Flash
 Request:
 
@@ -78,6 +81,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Dumping
 #### Request PIT data dump
 Request:
@@ -93,6 +97,7 @@ Response:
 |:-------------|:------------------|:--------------------------------------------|
 | 0x65         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | dynamic      | 32-bit integer    | PIT file size. Ususally it is 0x4000        |
+
 #### Dump PIT data block
 One block is 500 bytes. Send an empty packet after last block. \
 Request:
@@ -108,6 +113,7 @@ Response:
 | Value        | Argument Type     | Information                       |
 |:-------------|:------------------|:----------------------------------|
 | dynamic      | Raw byte buffer   | The requested block's data buffer |
+
 #### End PIT dump
 Identical to End PIT flash. \
 Request:
