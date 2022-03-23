@@ -8,8 +8,20 @@ nav_order: 4
 
 ## Packets
 ### Begin Session
-Write: `0x64(Session) 0x00(Begin) <Protocol Version>(0x00, 0x03, 0x04 or 0x05)`
-Read: `0x64(Session) 0x00(Response Ack)`
+Request:
+
+| Value        | Argument Type     | Information                                          |
+|:-------------|:------------------|:-----------------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type                                          |
+| 0x00         | 32-bit integer    | Packet's command                                     |
+| dynamic      | 32-bit integer    | Protocol version (Known: 0x00, 0x03, 0x04 and 0x05)  |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| dynamic      | 32-bit integer    | The protocol version, modified              |
 
 The Response Ack would be:
 * If the `<Protocol Version>` is 0, would return `0x20000`
@@ -18,49 +30,186 @@ The Response Ack would be:
 * In other cases it would return:
     * `(<Bootloader Protocol Version> << 16) | 0x0`
 
-If Response Ack is not 0:
+(In a nutshell, `0x04` would be `0x40000`)
+
+If Response Ack is not 0 (in most cases):
 * Read/Write timeout for file transfer: 120000 (2 minutes)
 * Packet size for file transfer: 1048576 (1 MiB)
 * File transfer max sequence size: 30 (Packets)
-* Send `0x64(Session) 0x05(FilePartSize) 0x100000(Packet Size)`
-* Read `0x64(Session) 0x00(Always)`
+* Set File Part size to 0x100000
+
+### Set File Part size
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x05         | 32-bit integer    | Packet's command           |
+| dynamic      | 32-bit integer    | File part size (in bytes)  |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
 
 ### Device Type (or Reset Timer)
 May always return zero. \
-Write: `0x64(Session) 0x01(Device Type)` \
-Read: `0x64(Session) <32bit>(Device Type)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x01         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| dynamic      | 32-bit integer    | Device's type.                              |
+
 ### Erase userdata partition
 **WARNING!** This will do a factory reset. \
-Write: `0x64(Session) 0x07(Erase)` \
-Read: `0x64(Session) 0x00(Status Code)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x07         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| dynamic      | 32-bit integer    | Status code of the Erase function           |
+
 ### Set Total Bytes
-Write: `0x64(Session) 0x02(Total Bytes) <64bit>(Bytes Length)` \
-Read: `0x64(Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x02         | 32-bit integer    | Packet's command           |
+| dynamic      | 32-bit integer    | Total length, in bytes     |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### OEM State **(Unknown)**
-Write: `0x64(Session) 0x03(OEM State)`
+`0x64(Session) 0x03(OEM State)`
 ### No OEM check **(Unknown)**
-Write: `0x64(Session) 0x04(No OEM Check)`
+`0x64(Session) 0x04(No OEM Check)`
 ### Enable T-Flash
-Write: `0x64(Session) 0x08(T-Flash)` \
-Read: `0x64(Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x08         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Change device's region code
-Write: `0x64(Session) 0x09(Sales Code) <3bytes>(RegionCode)` \
-Read: `0x64(Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x09         | 32-bit integer    | Packet's command           |
+| dynamic      | String, 3 bytes   | Region Code                |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Enable RTN config on boot
-Write: `0x64(Session) 0x0A(RTN Config)` \
-Read: `0x64(Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x64         | 32-bit integer    | Packet type                |
+| 0x0A         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ## End Session (0x67)
 ### End Session
-Write: `0x67(End Session) 0x00(End)` \
-Read: `0x67(End Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x67         | 32-bit integer    | Packet type                |
+| 0x00         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Reboot
-Write: `0x67(End Session) 0x01(Reboot)` \
-Read: `0x67(End Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x67         | 32-bit integer    | Packet type                |
+| 0x01         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Reboot into ODIN
-Would restart the device, and boot into ODIN again. \
-Write: `0x67(End Session) 0x02(Reboot into ODIN)` \
-Read: `0x67(End Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x67         | 32-bit integer    | Packet type                |
+| 0x02         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
+
 ### Shutdown
 This command is unsupported on some devices. \
-Write: `0x67(End Session) 0x03(Shutdown)` \
-Read: `0x67(End Session) 0x00(Always)`
+Request:
+
+| Value        | Argument Type     | Information                |
+|:-------------|:------------------|:---------------------------|
+| 0x67         | 32-bit integer    | Packet type                |
+| 0x03         | 32-bit integer    | Packet's command           |
+
+Response:
+
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x00         | 32-bit integer    | Status code. Is always zero.                |
