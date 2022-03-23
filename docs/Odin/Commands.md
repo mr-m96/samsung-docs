@@ -64,8 +64,8 @@ It would render your device unusable because of a security error.
 | REBOOT_MODE_POWEROFF_BYKEY    | 0x12  | Unused?                   |
 
 #### Enable/disable upload
+Used mainly to do ramdumps, the way is unknown. \
 Command format: `setenv FORCE_UPLOAD [value]` \
-I couldn't find anything that would "upload". \
 Response format: `Untested`
 
 ##### Values
@@ -94,6 +94,7 @@ Tabs and quotes are not allowed. \
 Response format: `Untested`
 
 ##### Values observed
+
 | Name            | Value                                                                |
 |:----------------|:---------------------------------------------------------------------|
 | Default Value   | `console=ram loglevel=7`                                             |
