@@ -15,8 +15,8 @@ nav_order: 5
 ### Dump
 1) Send Begin PIT dump \
 2) Split the filesize into blocks \
-3) Send Dump PIT data block \
-    * Repeat until end
+3) Send Dump PIT data block
+* Repeat until end
 5) Send End PIT dump
 
 ## Packets
