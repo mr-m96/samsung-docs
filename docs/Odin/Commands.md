@@ -47,7 +47,6 @@ Write: `SECCMD<command>` \
 Read: `<response>`
 
 ### DVIF
-Outputt differs between device models. \
 Write: `DVIF` \
 Read: 
 ```
