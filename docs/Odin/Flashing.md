@@ -30,20 +30,76 @@ nav_order: 3
 
 ## Documentation
 ### Request file flash
-Write: `0x66(File) 0x00(Flash)` \
-Read: `0x66(File) 0x00(Always)`
+Request:
+| Value        | Argument Type     | Information        |
+|:-------------|:------------------|:-------------------|
+| 0x66         | Byte              | Packet type        |
+| 0x00         | Byte              | Packet's command   |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x66         | Byte              | Packet type, would be 0xFF on failure       |
+| 0x00         | Byte              | Status code. Is always zero.                |
 ### Begin file sequence flash
-Write: `0x66(File) 0x02(FilePart) <32bit>(Byte Length)` \
-Read: `0x66(File) 0x00(On Success)`
+Request:
+| Value        | Argument Type     | Information        |
+|:-------------|:------------------|:-------------------|
+| 0x66         | Byte              | Packet type        |
+| 0x02         | Byte              | Packet's command   |
+| <dynamic>    | 32-bit integer    | Length (in bytes)  |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x66         | Byte              | Packet type, would be 0xFF on failure       |
+| 0x00         | Byte              | Status code. May not be zero.               |
 ### Flash a file part
 Send an empty packet for the first file part. \
-Write: `<File part data>` \
-Read: `0x00(File Part) <32bit>(File Part Index)`
+Request:
+| Value        | Argument Type     | Information        |
+|:-------------|:------------------|:-------------------|
+| <dynamic>    | Raw byte buffer   | File Part buffer   |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x66         | Byte              | Packet type, would be 0xFF on failure       |
+| <dynamic>    | 32-bit integer    | Current file part index on LOKE's side      |
 ### End file sequence flash: MODEM
 Send an empty packet before and after. \
-Write: `0x66(File) 0x03(End) 0x01(Modem/CP) <32bit>(Sequence Byte Length) 0x00(Unknown) <32bit>(Device Type) <32bit>(Is last Sequence)` \
-Read: `0x66(File) 0x00(On Success)`
+Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x66         | Byte              | Packet type                 |
+| 0x03         | Byte              | Packet's command            |
+| 0x01         | Byte              | Modem/CP                    |
+| <dynamic>    | 32-bit integer    | Sequence byte length        |
+| 0x00         | Byte              | TODO: Sync with source code |
+| <dynamic>    | 32-bit integer    | Device Type (PIT)           |
+| <dynamic>    | 32-bit integer    | Is last sequence, 0/1 bool  |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x66         | Byte              | Packet type, would be 0xFF on failure       |
+| 0x00         | Byte              | Status code. May not be zero.               |
 ### End file sequence flash: PHONE
 Send an empty packet before and after. \
-Write: `0x66(File) 0x03(End) 0x00(Phone/AP) <32bit>(Sequence Byte Length) 0x00(Unknown) <32bit>(Device Type) <32bit>(Identifier) <32bit>(Is last Sequence)` \
-Read: `0x66(File) 0x00(On Success)`
+  Request:
+| Value        | Argument Type     | Information                 |
+|:-------------|:------------------|:----------------------------|
+| 0x66         | Byte              | Packet type                 |
+| 0x03         | Byte              | Packet's command            |
+| 0x00         | Byte              | Phone/AP                    |
+| <dynamic>    | 32-bit integer    | Sequence byte length        |
+| 0x00         | Byte              | TODO: Sync with source code |
+| <dynamic>    | 32-bit integer    | Device Type (PIT)           |
+| <dynamic>    | 32-bit integer    | Partition Identifier (PIT)  |
+| <dynamic>    | 32-bit integer    | Is last sequence, 0/1 bool  |
+
+Response:
+| Value        | Argument Type     | Information                                 |
+|:-------------|:------------------|:--------------------------------------------|
+| 0x66         | Byte              | Packet type, would be 0xFF on failure       |
+| 0x00         | Byte              | Status code. May not be zero.               |
