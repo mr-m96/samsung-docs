@@ -85,7 +85,7 @@ Request:
 | 0x03         | 32-bit integer    | Packet's command            |
 | 0x01         | 32-bit integer    | Modem/CP                    |
 | dynamic      | 32-bit integer    | Sequence byte length        |
-| 0x00         | 32-bit integer    | TODO: Sync with source code |
+| 0x00         | 32-bit integer    | Unknown                     |
 | dynamic      | 32-bit integer    | Device Type (PIT)           |
 | dynamic      | 32-bit integer    | Is last sequence, 0/1 bool  |
 
@@ -106,7 +106,7 @@ Request:
 | 0x03         | 32-bit integer            | Packet's command            |
 | 0x00         | 32-bit integer            | Phone/AP                    |
 | dynamic      | 32-bit integer            | Sequence byte length        |
-| 0x00         | 32-bit integer            | TODO: Sync with source code |
+| 0x00         | 32-bit integer            | Unknown                     |
 | dynamic      | 32-bit integer            | Device Type (PIT)           |
 | dynamic      | 32-bit integer            | Partition Identifier (PIT)  |
 | dynamic      | 32-bit integer Boolean    | Is last sequence            |
