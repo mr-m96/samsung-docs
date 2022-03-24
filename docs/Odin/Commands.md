@@ -6,13 +6,11 @@ parent: Odin
 nav_order: 2
 ---
 
-## Rooting
-Does nothing according to source code. \
+## Rooting **(Inaccurate)**
 Write: `ROOTING` \
 Read: `DDI`
 
-## ATQ0
-Does nothing according to source code. \
+## ATQ0 **(Inaccurate)**
 Write: `ATQ0` \
 Read: `OKAY`
 
