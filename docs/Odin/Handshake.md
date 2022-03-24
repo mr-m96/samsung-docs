@@ -10,7 +10,7 @@ nav_order: 3
 Before any upload or download can take place, a handshake is done.
 
 ### Mjolnir2
-Found this by ~~of course not using the samsung leak~~. Before documenting this protocol, I would like to check if it's even present on modern devices. You can volounteer your device [here](https://github.com/Samsung-Loki/Hreidmar/blob/main/README.md) (it is just a check if this command is present). \
+Found this by ~~of course not using the samsung leak~~. Before documenting this protocol, I would like to check if it's even present on modern devices. You can volunteer your device [here](https://github.com/Samsung-Loki/Hreidmar/blob/main/VOLUNTEER.md) (it is just a check if this command is present). \
 Write: `MJOLNIR` \
 Read: `THOR`
 
