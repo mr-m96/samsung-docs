@@ -56,7 +56,7 @@ Response:
 | Value        | Argument Type     | Information                                    |
 |:-------------|:------------------|:-----------------------------------------------|
 | 0x69         | 32-bit integer    | Packet type, would be 0xFF on failure          |
-| dynamic      | 32-bit integer    | Size of a block. Usually it is 500 bytes       |
+| dynamic      | 32-bit integer    | Size of the DevInfo. Usually it is 500 bytes   |
 
 ### Dump a block
 A block is 500 bytes. \
