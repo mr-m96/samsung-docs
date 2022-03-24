@@ -23,7 +23,7 @@ Does the same thing as the usual ODIN handshake. \
 Write: `FPGM` \
 Read: `OK`
 
-### THOR **(Unknown)**
+### THOR
 It used by the Thor flashing software (newer Odin). \
 Does the same as the usual `ODIN` handshake. \
 Write: `THOR` \
