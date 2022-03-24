@@ -32,7 +32,7 @@ The modified version would be:
 
 (In a nutshell, `0x04` would be `0x40000`)
 
-Devices that do not support changing the packet size, send zero instead (according to Heimdall)
+Devices that do not support changing the packet size, send zero instead (according to Heimdall) \
 If it's not the case, we can safely change the values:
 * Read/Write timeout for file transfer: 120000 (2 minutes)
 * Packet size for file transfer: 1048576 (1 MiB)
