@@ -165,7 +165,7 @@ Response:
 
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
-| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x67         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 
 ### Reboot
@@ -180,7 +180,7 @@ Response:
 
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
-| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x67         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 
 ### Reboot into ODIN
@@ -195,7 +195,7 @@ Response:
 
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
-| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x67         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
 
 ### Shutdown
@@ -211,5 +211,5 @@ Response:
 
 | Value        | Argument Type     | Information                                 |
 |:-------------|:------------------|:--------------------------------------------|
-| 0x64         | 32-bit integer    | Packet type, would be 0xFF on failure       |
+| 0x67         | 32-bit integer    | Packet type, would be 0xFF on failure       |
 | 0x00         | 32-bit integer    | Status code. Is always zero.                |
